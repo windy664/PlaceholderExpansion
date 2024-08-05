@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.yourname'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+}
+
+dependencies {
+    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly 'me.clip:placeholderapi:2.11.3'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    filesMatching('plugin.yml.template') {
+        // 替换占位符
+        filter { line -> line.replace('${version}', project.version) }
+    }
+}
+
+jar {
+    // 打包任务，无需在这里处理plugin.yml
+}

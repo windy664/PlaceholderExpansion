@@ -1,0 +1,6 @@
+name: PlaceholderExpansion
+version: ${version}
+main: org.windy.placeholderExpansion.PlaceholderExpansion
+api-version: '1.20'
+depend: [PlaceholderAPI]
+description: 一个使用PlaceholderAPI显示在线玩家列表的插件。
